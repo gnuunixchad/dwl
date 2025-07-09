@@ -159,6 +159,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_m,          spawn,          SHCMD("${HOME}/.local/bin/audio source --mute") },
 	{ MODKEY,                    XKB_KEY_bracketleft,  spawn,        SHCMD("${HOME}/.local/bin/bright --minus") },
 	{ MODKEY,                    XKB_KEY_bracketright, spawn,        SHCMD("${HOME}/.local/bin/bright sink --plus") },
+	{ MODKEY|WLR_MODIFIER_SHIFT|WLR_MODIFIER_CTRL, XKB_KEY_L, spawn, SHCMD("swaylock") },
 	{ WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t && notify-send -u normal -r 3289 -t 1100 $(fcitx5-remote -n)") },
 	{ MODKEY,                    XKB_KEY_n,          spawn,          SHCMD("dunstctl history-pop") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_n,          spawn,          SHCMD("dunstctl close") },
