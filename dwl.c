@@ -3182,7 +3182,7 @@ updatebar(Monitor *m)
 		die("Could not load font");
 
 	m->b.scale = m->wlr_output->scale;
-	m->lrpad = m->drw->font->height;
+	m->lrpad = m->drw->font->height * 0.75;
 	m->b.height = m->drw->font->height + 2;
 	m->b.real_height = (int)((float)m->b.height / m->wlr_output->scale);
 }
