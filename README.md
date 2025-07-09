@@ -1,4 +1,6 @@
-# My build of [dwl](https://codeberg.org/dwl/dwl) - dwm for Wayland
+# <img src="./misc/dwl-repo.png" width="24"/> My build of [dwl](https://codeberg.org/dwl/dwl) - dwm for Wayland
+
+
 
 ![](./misc/20250709_22h31m01s_grim.png)
 
