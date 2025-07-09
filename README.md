@@ -13,6 +13,7 @@ I'm using bar patches with [damblocks](https://codeberg.org/unixchad/damblocks),
 - [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart)
 - [movestack](https://codeberg.org/dwl/dwl-patches/patch/movestack)
 - [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
+- [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
 
 ### Building dwl v0.7
 dwl has the following dependencies:
