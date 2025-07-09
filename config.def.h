@@ -125,14 +125,35 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "foot", NULL };
-static const char *menucmd[] = { "wmenu-run", NULL };
+static const char *termcmd[]    = { "footclient", NULL };
+static const char *menucmd[]    = { "wmenu-run-color", NULL };
+static const char *lfcmd[]      = { "footclient", "lf", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
+	{ MODKEY,                    XKB_KEY_r,          spawn,          {.v = lfcmd} },
+	{ MODKEY,                    XKB_KEY_minus,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --minus") },
+	{ MODKEY,                    XKB_KEY_equal,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --plus") },
+	{ MODKEY,                    XKB_KEY_m,          spawn,          SHCMD("${HOME}/.local/bin/audio sink --mute") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_minus,      spawn,          SHCMD("${HOME}/.local/bin/audio source --minus") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_equal,      spawn,          SHCMD("${HOME}/.local/bin/audio source --plus") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_m,          spawn,          SHCMD("${HOME}/.local/bin/audio source --mute") },
+	{ MODKEY,                    XKB_KEY_bracketleft,  spawn,        SHCMD("${HOME}/.local/bin/bright --minus") },
+	{ MODKEY,                    XKB_KEY_bracketright, spawn,        SHCMD("${HOME}/.local/bin/bright sink --plus") },
+	{ WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t && notify-send -u normal -r 3289 -t 1100 $(fcitx5-remote -n)") },
+	{ MODKEY,                    XKB_KEY_n,          spawn,          SHCMD("dunstctl history-pop") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_n,          spawn,          SHCMD("dunstctl close") },
+	{ MODKEY,                    XKB_KEY_BackSpace,  spawn,          SHCMD("dunstctl close-all") },
+	{ MODKEY,                    XKB_KEY_g,          spawn,          SHCMD("${HOME}/.local/bin/wshot") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_g,          spawn,          SHCMD("${HOME}/.local/bin/wshot-geo") },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_g,          spawn,          SHCMD("grim && notify-send -u low -r 88 \"Screenshot taken on all outputs\"") },
+	{ MODKEY,                    XKB_KEY_c,          spawn,          SHCMD("${HOME}/.local/bin/wclip") },
+	{ MODKEY,                    XKB_KEY_a,          spawn,          SHCMD("${HOME}/.local/bin/wbookmark") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_a,          spawn,          SHCMD("${HOME}/.local/bin/wbookmark-record") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_p,          spawn,          SHCMD("mpc --toggle") },
 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
@@ -143,12 +164,12 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_C,          killclient,     {0} },
-	{ MODKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,      togglefloating, {0} },
-	{ MODKEY,                    XKB_KEY_e,         togglefullscreen, {0} },
+	{ MODKEY,                    XKB_KEY_e,          togglefullscreen, {0} },
 	{ MODKEY,                    XKB_KEY_0,          view,           {.ui = ~0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_parenright, tag,            {.ui = ~0} },
 	{ MODKEY,                    XKB_KEY_comma,      focusmon,       {.i = WLR_DIRECTION_LEFT} },
