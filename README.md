@@ -1,5 +1,7 @@
 # My build of [dwl](https://codeberg.org/dwl/dwl) - dwm for Wayland
 
+![](./misc/20250709_22h31m01s_grim.png)
+
 ### Running dwl
 ```sh
 alias dl="exec ssh-agent ${HOME}/.local/bin/damblocks | /usr/local/bin/dwl"
@@ -28,7 +30,7 @@ dwl has the following dependencies:
 dwl has the following additional dependencies if XWayland support is enabled:
 - libxcb
 - libxcb-wm
-- wlroots (compiled with X11 support)
+- wlroots0.18 (compiled with X11 support)
 - Xwayland (runtime only)
 
 To enable XWayland, you should uncomment its flags in `config.mk`.
