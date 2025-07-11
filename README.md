@@ -1,7 +1,6 @@
 # <img src="./misc/dwl-repo.png" width="24"/> My build of [dwl](https://codeberg.org/dwl/dwl) - dwm for Wayland
 
 
-
 ![](./misc/20250709_22h31m01s_grim.png)
 
 ### Running dwl
@@ -10,7 +9,7 @@ alias dl="exec ssh-agent ${HOME}/.local/bin/damblocks | /usr/local/bin/dwl"
 ```
 
 ### Status information
-I'm using bar patches with [damblocks](https://codeberg.org/unixchad/damblocks), my posix script with signaling support. It's also on [github](https://github.com/gnuunixchad/damblocks).
+I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixchad/damblocks)/[github](https://github.com/gnuunixchad/damblocks)), my modular POSIX script with signaling support.
 
 ### Patches applied
 - [bar](https://codeberg.org/dwl/dwl-patches/patch/bar)
