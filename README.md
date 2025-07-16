@@ -17,6 +17,7 @@ I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixcha
 - [movestack](https://codeberg.org/dwl/dwl-patches/patch/movestack)
 - [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
 - [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
+- [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
 
 ### Building dwl v0.7
 dwl has the following dependencies:
