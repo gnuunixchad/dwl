@@ -12,13 +12,13 @@ alias dl="exec ssh-agent ${HOME}/.local/bin/damblocks | /usr/local/bin/dwl"
 I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixchad/damblocks)/[github](https://github.com/gnuunixchad/damblocks)), my modular POSIX script with signaling support.
 
 ### Patches applied
-- [bar](https://codeberg.org/dwl/dwl-patches/patch/bar)
-- [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart)
-- [movestack](https://codeberg.org/dwl/dwl-patches/patch/movestack)
-- [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
-- [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
-- [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
-- [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
+1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar)
+2. [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart)
+3. [movestack](https://codeberg.org/dwl/dwl-patches/patch/movestack)
+4. [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
+5. [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
+6. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
+7. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
 
 ### Building dwl v0.7
 dwl has the following dependencies:
