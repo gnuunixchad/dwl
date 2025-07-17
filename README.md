@@ -18,6 +18,7 @@ philosophy. Like dwm, dwl is:
 3. [shiftview](https://codeberg.org/dwl/dwl-patches/patches/shiftview.patch)
 4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patches/swapandfocusdir.patch)
 5. [sticky](https://codeberg.org/dwl/dwl-patches/patches/sticky.patch)
+6. [autostart](https://codeberg.org/dwl/dwl-patches/patches/autostart.patch)
 
 
 ## Getting Started:
