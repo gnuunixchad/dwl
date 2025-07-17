@@ -38,6 +38,7 @@ static const char *const autostart[] = {
         "wlr-output", NULL,
         "sh", "-c", "swaybg -m fill -i ${HOME}/.local/share/wallpaper", NULL,
         "dunst", NULL,
+        // Disable due to footclient flickering
 	    "foots", NULL,
 	    "clsd", NULL,
 	    "wobd", NULL,
@@ -144,7 +145,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[]    = { "footclient", NULL };
+static const char *termcmd[]    = { "foot", NULL };
 static const char *menucmd[]    = { "wmenu-run-color", NULL };
 static const char *lfcmd[]      = { "footclient", "lf", NULL };
 
