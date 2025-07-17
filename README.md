@@ -18,6 +18,7 @@ For a built-in bar build, checkout the `master` branch instead.
 4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patches/swapandfocusdir.patch)
 5. [sticky](https://codeberg.org/dwl/dwl-patches/patches/sticky.patch)
 6. [autostart](https://codeberg.org/dwl/dwl-patches/patches/autostart.patch)
+7. [genericgaps](https://codeberg.org/dwl/dwl-patches/patches/genericgaps-0.7.patch)
 
 ### Building dwl v0.7
 dwl has the following dependencies:
