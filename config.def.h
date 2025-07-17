@@ -26,11 +26,11 @@ static int log_level = WLR_ERROR;
 /* Autostart */
 static const char *const autostart[] = {
     "wlr-output", NULL,
-    "gammastep", "-O 5000", NULL,
+    "gammastep", "-O", "5000", NULL,
     "sh", "-c", "swaybg -m fill -i ${HOME}/.local/share/wallpaper", NULL,
     // disable `footserver` for footclient's flickering glitch
     //"foots", NULL,
-    "wl-paste", "--watch cliphist store", NULL,
+    "wl-paste", "--watch", "cliphist", "store", NULL,
     "wobd", NULL,
     "dunst", NULL,
     "clsd", NULL,
