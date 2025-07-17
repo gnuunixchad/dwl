@@ -151,6 +151,8 @@ static const char *termcmd[]    = { "foot", NULL };
 static const char *menucmd[]    = { "wmenu-run-color", NULL };
 static const char *lfcmd[]      = { "footclient", "lf", NULL };
 
+#include "shiftview.c"
+
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
@@ -197,6 +199,8 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05f} },
 	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
+	{ MODKEY,                    XKB_KEY_apostrophe, shiftview,      { .i = 1 } },
+	{ MODKEY,                    XKB_KEY_semicolon,  shiftview,      { .i = -1 } },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_B,          togglegaps,     {0} },
 	{ MODKEY,                    XKB_KEY_s,          togglesticky,   {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_C,          killclient,     {0} },
