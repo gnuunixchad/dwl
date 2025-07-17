@@ -1,8 +1,8 @@
 /* Taken from https://github.com/djpohly/dwl/issues/466 */
 #define COLOR(hex)    { ((hex >> 24) & 0xFF) / 255.0f, \
-    ((hex >> 16) & 0xFF) / 255.0f, \
-    ((hex >> 8) & 0xFF) / 255.0f, \
-    (hex & 0xFF) / 255.0f }
+                        ((hex >> 16) & 0xFF) / 255.0f, \
+                        ((hex >> 8) & 0xFF) / 255.0f, \
+                        (hex & 0xFF) / 255.0f }
 /* appearance */
 static const int sloppyfocus               = 1;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
@@ -25,43 +25,44 @@ static int log_level = WLR_ERROR;
 
 /* Autostart */
 static const char *const autostart[] = {
-    "wlr-output", NULL,
-    "gammastep", "-O", "5000", NULL,
-    "sh", "-c", "swaybg -m fill -i ${HOME}/.local/share/wallpaper", NULL,
-    // disable `footserver` for footclient's flickering glitch
-    //"foots", NULL,
-    "wl-paste", "--watch", "cliphist", "store", NULL,
-    "wobd", NULL,
-    "dunst", NULL,
-    "clsd", NULL,
-    "swayidle", NULL,
-    NULL /* terminate */
+        "fcitx5", "-d", NULL,
+        "swayidle", NULL,
+        "gammastep", "-O", "5000", NULL,
+        "wl-paste", "--watch", "cliphist", "store", NULL,
+        "wlr-output", NULL,
+        "sh", "-c", "swaybg -m fill -i ${HOME}/.local/share/wallpaper", NULL,
+        "dunst", NULL,
+        // Disable due to footclient flickering
+	    "foots", NULL,
+	    "clsd", NULL,
+	    "wobd", NULL,
+        NULL /* terminate */
 };
 
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-    /* app_id             title       tags mask     isfloating   monitor */
-    /* examples: */
-    { "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
-    { "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+	/* app_id             title       tags mask     isfloating   monitor */
+	/* examples: */
+	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
+	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
 };
 
 /* layout(s) */
 static const Layout layouts[] = {
-    /* symbol     arrange function */
-    { "[]=",      tile },
-    { "><>",      NULL },    /* no layout function means floating behavior */
-    { "[M]",      monocle },
-    { "TTT",      bstack },
-    { "===",      bstackhoriz },
+	/* symbol     arrange function */
+	{ "[]=",      tile },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[M]",      monocle },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
 };
 
 /* monitors */
 /* (x=-1, y=-1) is reserved as an "autoconfigure" monitor position indicator
  * WARNING: negative values other than (-1, -1) cause problems with Xwayland clients
  * https://gitlab.freedesktop.org/xorg/xserver/-/issues/899
- */
+*/
 /* NOTE: ALWAYS add a fallback rule, even if you are completely sure it won't be used */
 static const MonitorRule monrules[] = {
 	/* name       mfact  nmaster scale layout       rotate/reflect                x    y */
@@ -69,7 +70,7 @@ static const MonitorRule monrules[] = {
 	{ "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
 	*/
 	/* defaults */
-	{ NULL,       0.50f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
+	{ NULL,       0.5f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
 };
 
 /* keyboard */
@@ -140,8 +141,9 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "foot", NULL };
-static const char *menucmd[] = { "wmenu-run-color", NULL };
+static const char *termcmd[]    = { "foot", NULL };
+static const char *menucmd[]    = { "wmenu-run-color", NULL };
+static const char *lfcmd[]      = { "foot", "lf", NULL };
 
 #include "shiftview.c"
 
@@ -150,7 +152,7 @@ static const Key keys[] = {
 	/* modifier                  key                 function        argument */
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
-	{ MODKEY,                    XKB_KEY_r,          spawn,          SHCMD("foot lf") },
+	{ MODKEY,                    XKB_KEY_r,          spawn,          {.v = lfcmd} },
 	{ MODKEY,                    XKB_KEY_minus,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --minus") },
 	{ MODKEY,                    XKB_KEY_equal,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --plus") },
 	{ MODKEY,                    XKB_KEY_BackSpace,  spawn,          SHCMD("${HOME}/.local/bin/audio sink --mute") },
@@ -159,9 +161,9 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_BackSpace,  spawn,          SHCMD("${HOME}/.local/bin/audio source --mute") },
 	{ MODKEY,                    XKB_KEY_bracketleft,  spawn,        SHCMD("${HOME}/.local/bin/bright --minus") },
 	{ MODKEY,                    XKB_KEY_bracketright, spawn,        SHCMD("${HOME}/.local/bin/bright sink --plus") },
-    { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_W,          spawn,          SHCMD("swaylock") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_W,          spawn,          SHCMD("swaylock") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_E,          spawn,          SHCMD("${HOOME}/.local/bin/swayhibe") },
-    { WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t && notify-send -u normal -r 3289 -t 1100 $(fcitx5-remote -n)") },
+	{ WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t && notify-send -u normal -r 3289 -t 1100 $(fcitx5-remote -n)") },
 	{ MODKEY,                    XKB_KEY_n,          spawn,          SHCMD("dunstctl history-pop") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_N,          spawn,          SHCMD("dunstctl close") },
 	{ MODKEY,                    XKB_KEY_g,          spawn,          SHCMD("${HOME}/.local/bin/wshot") },
@@ -188,9 +190,10 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05f} },
 	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
-	{ MODKEY,                    XKB_KEY_s,          togglesticky,   {0} },
 	{ MODKEY,                    XKB_KEY_apostrophe, shiftview,      { .i = 1 } },
 	{ MODKEY,                    XKB_KEY_semicolon,  shiftview,      { .i = -1 } },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_B,          togglegaps,     {0} },
+	{ MODKEY,                    XKB_KEY_s,          togglesticky,   {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_C,          killclient,     {0} },
 	{ MODKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
