@@ -14,12 +14,11 @@ I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixcha
 ### Patches applied
 1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar)
 2. [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart)
-3. [movestack](https://codeberg.org/dwl/dwl-patches/patch/movestack)
-4. [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
-5. [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
-6. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
-7. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
-8. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch in commit 767a53aa97525dca6e7fbd9419230b4ef4b01380.)
+3. [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
+4. [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
+5. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
+6. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
+7. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch in commit 767a53aa97525dca6e7fbd9419230b4ef4b01380.)
 
 ### Building dwl v0.7
 dwl has the following dependencies:
