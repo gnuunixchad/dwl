@@ -18,6 +18,7 @@ I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixcha
 - [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
 - [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
 - [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
+- [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
 
 ### Building dwl v0.7
 dwl has the following dependencies:
