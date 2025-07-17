@@ -13,7 +13,9 @@ philosophy. Like dwm, dwl is:
 - Tied to as few external dependencies as possible
 
 ## Patches Applied:
-- [bottomstack](https://codeberg.org/dwl/dwl-patches/patches/bottomstack.patch)
+1. [bottomstack](https://codeberg.org/dwl/dwl-patches/patches/bottomstack.patch)
+2. [pertag](https://codeberg.org/dwl/dwl-patches/patches/pertag.patch)
+
 
 ## Getting Started:
 
