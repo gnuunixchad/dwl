@@ -11,6 +11,8 @@ alias dl="exec ssh-agent ${HOME}/.local/bin/damblocks | /usr/local/bin/dwl"
 ### Status information
 I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixchad/damblocks)/[github](https://github.com/gnuunixchad/damblocks)), my modular POSIX script with signaling support.
 
+For a build without the `bar.patch`, checkout the `nobar` branch. You can use any compatible bar.
+
 ### Patches applied
 1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar)
 2. [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart)
