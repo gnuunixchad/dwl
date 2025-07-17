@@ -12,13 +12,13 @@ This `nobar` branch has no bar patched, you can use any compatible bar.
 For a built-in bar build, checkout the `master` branch instead.
 
 ## Patches Applied:
-1. [bottomstack](https://codeberg.org/dwl/dwl-patches/patches/bottomstack.patch)
-2. [pertag](https://codeberg.org/dwl/dwl-patches/patches/pertag.patch)
-3. [shiftview](https://codeberg.org/dwl/dwl-patches/patches/shiftview.patch)
-4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patches/swapandfocusdir.patch)
-5. [sticky](https://codeberg.org/dwl/dwl-patches/patches/sticky.patch)
-6. [autostart](https://codeberg.org/dwl/dwl-patches/patches/autostart-0.7.patch)
-7. [genericgaps](https://codeberg.org/dwl/dwl-patches/patches/genericgaps-0.7.patch)
+1. [bottomstack](https://codeberg.org/dwl/dwl-patches/patches/bottomstack/bottomstack.patch)
+2. [pertag](https://codeberg.org/dwl/dwl-patches/patches/pertag/pertag.patch)
+3. [shiftview](https://codeberg.org/dwl/dwl-patches/patches/shiftview/shiftview.patch)
+4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patches/swapandfocusdir/swapandfocusdir.patch)
+5. [sticky](https://codeberg.org/dwl/dwl-patches/patches/sticky/sticky.patch)
+6. [autostart](https://codeberg.org/dwl/dwl-patches/patches/autostart/autostart-0.7.patch)
+7. [genericgaps](https://codeberg.org/dwl/dwl-patches/patches/genericgaps/genericgaps-0.7.patch)
 
 ### Building dwl v0.7
 dwl has the following dependencies:
