@@ -14,7 +14,7 @@ I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixcha
 For a build without the `bar.patch`, checkout the `nobar` branch. You can use any compatible bar.
 
 ### Patches applied
-1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar/bar.patch)
+1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar/bar-0.7.patch)
 2. [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart/autostart-0.7.patch)
 3. [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky/sticky.patch)
 4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir/swapandfocusdir.patch)
