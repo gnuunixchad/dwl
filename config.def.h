@@ -199,7 +199,6 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
 	{ MODKEY,                    XKB_KEY_apostrophe, shiftview,      { .i = 1 } },
 	{ MODKEY,                    XKB_KEY_semicolon,  shiftview,      { .i = -1 } },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_B,          togglegaps,     {0} },
 	{ MODKEY,                    XKB_KEY_s,          togglesticky,   {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_C,          killclient,     {0} },
 	{ MODKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },

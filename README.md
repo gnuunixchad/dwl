@@ -17,11 +17,10 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar)
 2. [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart)
 3. [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
-4. [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
-5. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
-6. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
-7. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch)
-8. [pertag](https://codeberg.org/dwl/dwl-patches/patch/pertag)(Modifed for bar-0.7.patch)
+4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
+5. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
+6. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch)
+7. [pertag](https://codeberg.org/dwl/dwl-patches/patch/pertag)(Modifed for bar-0.7.patch)
 
 #### Changes I've made to [bar](https://codeberg.org/dwl/dwl-patches/patch/bar) patch:
 - Reduce `lfpad` to 0.75, for paddings around tag names(commit f31b82b9db279c6f20689586e7ee1bc2615e2c11).
