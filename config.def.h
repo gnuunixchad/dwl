@@ -149,7 +149,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *termcmd[]    = { "foot", NULL };
 static const char *menucmd[]    = { "wmenu-run-color", NULL };
-static const char *lfcmd[]      = { "footclient", "lf", NULL };
+static const char *lfcmd[]      = { "foot", "lf", NULL };
 
 #include "shiftview.c"
 
