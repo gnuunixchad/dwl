@@ -4,7 +4,5 @@ dwl
 *-protocol.h
 .ccls-cache
 config.h
-config.def.h.orig
-config.def.h.rej
-dwl.c.orig
-dwl.c.rej
+*.orig
+*.rej
