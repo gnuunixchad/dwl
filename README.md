@@ -20,7 +20,16 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 4. [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
 5. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
 6. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
-7. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch in commit 767a53aa97525dca6e7fbd9419230b4ef4b01380.)
+7. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch)
+8. [pertag](https://codeberg.org/dwl/dwl-patches/patch/pertag)(Modifed for bar-0.7.patch)
+
+#### bar patch
+[bar](https://codeberg.org/dwl/dwl-patches/patch/bar) patch involes manual patch for some other patches, due to the changes:
+```diff
+--- TAGSCOUNT
++++ LENGTH(tags)
+```
+
 
 ### Building dwl v0.7
 dwl has the following dependencies:
