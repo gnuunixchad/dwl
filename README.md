@@ -5,8 +5,11 @@
 
 ### Running dwl
 ```sh
-alias dl="exec ssh-agent ${HOME}/.local/bin/damblocks | /usr/local/bin/dwl"
+alias dl="exec ssh-agent /usr/local/bin/dwl"
 ```
+### Status information
+This `nobar` branch has no bar patched, you can use any compatible bar.
+For a built-in bar build, checkout the `master` branch instead.
 
 ## Patches Applied:
 1. [bottomstack](https://codeberg.org/dwl/dwl-patches/patches/bottomstack.patch)
