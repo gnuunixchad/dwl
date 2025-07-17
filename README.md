@@ -15,6 +15,7 @@ philosophy. Like dwm, dwl is:
 ## Patches Applied:
 1. [bottomstack](https://codeberg.org/dwl/dwl-patches/patches/bottomstack.patch)
 2. [pertag](https://codeberg.org/dwl/dwl-patches/patches/pertag.patch)
+3. [shiftview](https://codeberg.org/dwl/dwl-patches/patches/shiftview.patch)
 
 
 ## Getting Started:
