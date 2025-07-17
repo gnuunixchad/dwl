@@ -19,7 +19,7 @@ I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixcha
 5. [gaps](https://codeberg.org/dwl/dwl-patches/patch/gaps)
 6. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
 7. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
-7. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch in commit 767a53aa97525dca6e7fbd9419230b4ef4b01380.)
+8. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch in commit 767a53aa97525dca6e7fbd9419230b4ef4b01380.)
 
 ### Building dwl v0.7
 dwl has the following dependencies:
