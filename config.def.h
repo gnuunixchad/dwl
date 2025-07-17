@@ -25,7 +25,15 @@ static int log_level = WLR_ERROR;
 
 /* Autostart */
 static const char *const autostart[] = {
-        "wbg", "/path/to/your/image", NULL,
+        "wlr-output", NULL,
+        "gammastep", "-O 5000", NULL,
+        "sh", "-c", "swaybg -m fill -i ${HOME}/.local/share/wallpaper", NULL,
+	    "foots", NULL,
+        "wl-paste", "--watch cliphist store", NULL,
+	    "wobd", NULL,
+        "dunst", NULL,
+	    "clsd", NULL,
+        "swayidle", NULL,
         NULL /* terminate */
 };
 
