@@ -21,6 +21,7 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 5. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack/bottomstack.patch)
 6. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview/shiftview.patch)(Modifed for bar-0.7.patch)
 7. [pertag](https://codeberg.org/dwl/dwl-patches/patch/pertag/pertag.patch)(Modifed for bar-0.7.patch)
+8. [genericgaps](https://codeberg.org/dwl/dwl-patches/patch/genericgaps/genericgaps-0.7.patch)
 
 #### Changes I've made to [bar](https://codeberg.org/dwl/dwl-patches/patch/bar) patch:
 - Reduce `lfpad` to 0.75, for paddings around tag names(commit f31b82b9db279c6f20689586e7ee1bc2615e2c11).
