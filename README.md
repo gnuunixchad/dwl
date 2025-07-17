@@ -16,6 +16,7 @@ philosophy. Like dwm, dwl is:
 1. [bottomstack](https://codeberg.org/dwl/dwl-patches/patches/bottomstack.patch)
 2. [pertag](https://codeberg.org/dwl/dwl-patches/patches/pertag.patch)
 3. [shiftview](https://codeberg.org/dwl/dwl-patches/patches/shiftview.patch)
+4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patches/swapandfocusdir.patch)
 
 
 ## Getting Started:
