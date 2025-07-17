@@ -12,6 +12,9 @@ philosophy. Like dwm, dwl is:
 - One C source file (or a very small number) configurable via `config.h`
 - Tied to as few external dependencies as possible
 
+## Patches Applied:
+- [bottomstack](https://codeberg.org/dwl/dwl-patches/patches/bottomstack.patch)
+
 ## Getting Started:
 
 ### **dwl branch 0.7 and releases based upon 0.7 build against [wlroots] 0.18**
