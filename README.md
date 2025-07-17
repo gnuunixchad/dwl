@@ -14,13 +14,13 @@ I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixcha
 For a build without the `bar.patch`, checkout the `nobar` branch. You can use any compatible bar.
 
 ### Patches applied
-1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar)
-2. [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart)
-3. [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
-4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
-5. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack)
-6. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)(Modifed for bar-0.7.patch)
-7. [pertag](https://codeberg.org/dwl/dwl-patches/patch/pertag)(Modifed for bar-0.7.patch)
+1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar/bar.patch)
+2. [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart/autostart-0.7.patch)
+3. [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky/sticky.patch)
+4. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir/swapandfocusdir.patch)
+5. [bottomstack](https://codeberg.org/dwl/dwl-patches/patch/bottomstack/bottomstack.patch)
+6. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview/shiftview.patch)(Modifed for bar-0.7.patch)
+7. [pertag](https://codeberg.org/dwl/dwl-patches/patch/pertag/pertag.patch)(Modifed for bar-0.7.patch)
 
 #### Changes I've made to [bar](https://codeberg.org/dwl/dwl-patches/patch/bar) patch:
 - Reduce `lfpad` to 0.75, for paddings around tag names(commit f31b82b9db279c6f20689586e7ee1bc2615e2c11).
