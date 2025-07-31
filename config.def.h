@@ -165,6 +165,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_r,          spawn,          {.v = lfcmd} },
+	{ MODKEY,                    XKB_KEY_x,          spawn,          SHCMD("emacsclient -nc") },
 	{ MODKEY,                    XKB_KEY_minus,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --minus") },
 	{ MODKEY,                    XKB_KEY_equal,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --plus") },
 	{ MODKEY,                    XKB_KEY_BackSpace,  spawn,          SHCMD("${HOME}/.local/bin/audio sink --mute") },
