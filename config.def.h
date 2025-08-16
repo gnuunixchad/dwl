@@ -47,6 +47,7 @@ static const char *const autostart[] = {
 	    "clsd", NULL,
 	    "wobd", NULL,
         "emacs", "--daemon", NULL,
+        "mbs-cron", NULL,
         NULL /* terminate */
 };
 
