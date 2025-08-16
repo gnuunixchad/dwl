@@ -46,6 +46,7 @@ static const char *const autostart[] = {
 	    "foots", NULL,
 	    "clsd", NULL,
 	    "wobd", NULL,
+        "mbs-cron", NULL,
         NULL /* terminate */
 };
 
