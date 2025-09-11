@@ -177,7 +177,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,          SHCMD("${HOME}/.local/bin/exitdwl") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_W,          spawn,          SHCMD("swaylock") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_E,          spawn,          SHCMD("${HOME}/.local/bin/swayhibe") },
-	{ WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t && notify-send -u normal -r 3289 -t 1100 $(fcitx5-remote -n)") },
+	{ WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t") },
 	{ MODKEY,                    XKB_KEY_n,          spawn,          SHCMD("dunstctl history-pop") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_N,          spawn,          SHCMD("dunstctl close") },
 	{ MODKEY,                    XKB_KEY_g,          spawn,          SHCMD("${HOME}/.local/bin/wshot") },
