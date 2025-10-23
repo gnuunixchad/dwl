@@ -188,6 +188,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_A,          spawn,          SHCMD("${HOME}/.local/bin/address --record") },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_a,          spawn,          SHCMD("${HOME}/.local/bin/address --multi") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_P,          spawn,          SHCMD("mpc --toggle && ${HOME}/.local/bin/lsmus") },
+    { MODKEY,                    XKB_KEY_backslash,  spawn,          SHCMD("wlrctl pointer move 9999 9999") },
 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
