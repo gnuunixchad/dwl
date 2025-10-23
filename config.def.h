@@ -6,7 +6,7 @@
 /* appearance */
 static const int sloppyfocus               = 0;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
-static const int enablegaps                = 1;  /* 1 means gaps are enabled */
+static const int enablegaps                = 0;  /* 1 means gaps are enabled */
 static const int smartgaps                 = 0;  /* 1 means no outer gap when there is only one window */
 static const int monoclegaps               = 1;  /* 1 means outer gaps in monocle layout */
 static const unsigned int borderpx         = 3;  /* border pixel of windows */
@@ -40,7 +40,7 @@ static const char *const autostart[] = {
         "gammastep", "-O", "5000", NULL,
         "wl-paste", "--watch", "cliphist", "store", NULL,
         "kanshi", NULL,
-        "sh", "-c", "swaybg -m fill -i ${HOME}/.local/share/wallpaper", NULL,
+        "sh", "-c", "swaybg -c 000000", NULL,
         "dunst", NULL,
         // Disable due to footclient flickering
 	    "foots", NULL,
