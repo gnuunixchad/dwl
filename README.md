@@ -1,7 +1,7 @@
 # <img src="./misc/dwl-repo.png" width="24"/> My build of [dwl](https://codeberg.org/dwl/dwl) - dwm for Wayland
 
 
-![](./misc/20250709_22h31m01s_grim.png)
+![](./misc/20251113_23h10m17s_grim.png)
 
 ### Running dwl
 ```sh
