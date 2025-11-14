@@ -40,7 +40,8 @@ static const char *const autostart[] = {
         "gammastep", "-O", "5000", NULL,
         "wl-paste", "--watch", "cliphist", "store", NULL,
         "kanshi", NULL,
-        "sh", "-c", "swaybg -c 000000", NULL,
+        "sh", "-c", "swaybg -i ${HOME}/.local/share/wallpaper -m fill", NULL,
+        //"sh", "-c", "swaybg -c 000000", NULL,
         "dunst", NULL,
         // Disable due to footclient flickering
 	    "foots", NULL,
