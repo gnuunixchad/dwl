@@ -156,7 +156,6 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *termcmd[]    = { "foot", NULL };
 static const char *menucmd[]    = { "wmenu-run-color", NULL };
-static const char *lfcmd[]      = { "foot", "lf", NULL };
 
 #include "shiftview.c"
 
@@ -166,7 +165,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_v,          spawn,          SHCMD("footclient -T \"Floating_Term\" -o colors.alpha=0.9 abduco -A dvtm") },
-	{ MODKEY,                    XKB_KEY_r,          spawn,          {.v = lfcmd} },
+	{ MODKEY,                    XKB_KEY_r,          spawn,          SHCMD("foot sh -c 'sleep 0.03 && lf'") },
 	{ MODKEY,                    XKB_KEY_minus,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --minus") },
 	{ MODKEY,                    XKB_KEY_equal,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --plus") },
 	{ MODKEY,                    XKB_KEY_BackSpace,  spawn,          SHCMD("${HOME}/.local/bin/audio sink --mute") },
