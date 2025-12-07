@@ -163,7 +163,7 @@ static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
+	{ MODKEY,                    XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_v,          spawn,          SHCMD("footclient -T \"Floating_Term\" -o colors.alpha=0.9 abduco -A dvtm") },
 	{ MODKEY,                    XKB_KEY_r,          spawn,          SHCMD("foot sh -c 'sleep 0.03 && lf'") },
 	{ MODKEY,                    XKB_KEY_minus,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --minus") },
@@ -209,7 +209,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05f} },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_minus,      incgaps,        {.i = +1 } },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_equal,      incgaps,        {.i = -1 } },
-	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
+	{ MODKEY,                    XKB_KEY_z,          zoom,           {0} },
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
 	{ MODKEY,                    XKB_KEY_apostrophe, shiftview,      { .i = 1 } },
 	{ MODKEY,                    XKB_KEY_semicolon,  shiftview,      { .i = -1 } },
