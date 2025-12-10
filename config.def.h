@@ -166,6 +166,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_v,          spawn,          SHCMD("footclient -T \"Floating_Term\" -o colors.alpha=0.9 abduco -A dvtm dvtm-status") },
 	{ MODKEY,                    XKB_KEY_r,          spawn,          SHCMD("foot sh -c 'sleep 0.03 && lf'") },
+	{ MODKEY,                    XKB_KEY_q,          spawn,          SHCMD("qutebrowser") },
 	{ MODKEY,                    XKB_KEY_minus,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --minus") },
 	{ MODKEY,                    XKB_KEY_equal,      spawn,          SHCMD("${HOME}/.local/bin/audio sink --plus") },
 	{ MODKEY,                    XKB_KEY_BackSpace,  spawn,          SHCMD("${HOME}/.local/bin/audio sink --mute") },
