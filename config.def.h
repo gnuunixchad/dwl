@@ -59,6 +59,7 @@ static const Rule rules[] = {
 	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
 	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
 	{ "foot",        "Floating_Term", 0,            1,           -1 },
+	{ "foot",        "Floating_IMG",  0,            1,           -1 }, /* ${HOME}/.local/bin/url-rifle (preview images in newsboat) */
 };
 
 /* layout(s) */
