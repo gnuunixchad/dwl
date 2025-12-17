@@ -176,7 +176,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_BackSpace,  spawn,          SHCMD("${HOME}/.local/bin/audio source --mute") },
 	{ MODKEY,                    XKB_KEY_bracketleft,  spawn,        SHCMD("${HOME}/.local/bin/bright --minus") },
 	{ MODKEY,                    XKB_KEY_bracketright, spawn,        SHCMD("${HOME}/.local/bin/bright sink --plus") },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,          SHCMD("${HOME}/.local/bin/exitdwl") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,          SHCMD("${HOME}/.local/bin/exiland -dwl") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_W,          spawn,          SHCMD("swaylock") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_E,          spawn,          SHCMD("${HOME}/.local/bin/hibe") },
 	{ WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t") },
