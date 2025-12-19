@@ -1,5 +1,14 @@
 # dwl - dwm for Wayland
 
+---
+2025-08-16:  
+dwl IS CURRENTLY UN-MAINTAINED.  
+AT THE PRESENT TIME, I (@fauxmight) DO NOT HAVE  
+THE TIME OR CAPACITY TO KEEP UP WITH [wlroots] CHANGES.  
+IF YOU ARE INTERESTED IN TAKING ON LEAD DEVELOPER RESPONSIBILITIES,  
+SEE ISSUE [#1166](https://codeberg.org/dwl/dwl/issues/1166).
+---
+
 Join us on our IRC channel: [#dwl on Libera Chat]  
 Or on the community-maintained [Discord server].
 
