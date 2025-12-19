@@ -1,6 +1,5 @@
 # dwl - dwm for Wayland
 
----
 2025-08-16:  
 dwl IS CURRENTLY UN-MAINTAINED.  
 AT THE PRESENT TIME, I (@fauxmight) DO NOT HAVE  
