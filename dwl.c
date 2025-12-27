@@ -1616,7 +1616,8 @@ keybinding(uint32_t mods, xkb_keysym_t sym)
 	const Key *k;
 	for (k = keys; k < END(keys); k++) {
 		if (CLEANMASK(mods) == CLEANMASK(k->mod)
-				&& sym == k->keysym && k->func) {
+				&& xkb_keysym_to_lower(sym) == xkb_keysym_to_lower(k->keysym)
+				&& k->func) {
 			k->func(&k->arg);
 			return 1;
 		}
