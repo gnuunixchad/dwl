@@ -187,6 +187,8 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,          SHCMD("${HOME}/.local/bin/exiland -dwl") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_W,          spawn,          SHCMD("swaylock") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_E,          spawn,          SHCMD("${HOME}/.local/bin/hibe") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_M,          spawn,          SHCMD("pgrep hyprmag && killall -e hyprmag || hyprmag -r 9999 -s 2") },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_m,          spawn,          SHCMD("pgrep hyprmag && killall -e hyprmag || hyprmag") },
 	{ WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t") },
 	{ MODKEY,                    XKB_KEY_n,          spawn,          SHCMD("dunstctl history-pop") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_N,          spawn,          SHCMD("dunstctl close") },
