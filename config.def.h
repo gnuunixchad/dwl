@@ -6,12 +6,12 @@
 /* appearance */
 static const int sloppyfocus               = 0;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
-static const int enablegaps                = 0;  /* 1 means gaps are enabled */
-static const int smartgaps                 = 0;  /* 1 means no outer gap when there is only one window */
-static const int monoclegaps               = 1;  /* 1 means outer gaps in monocle layout */
+static const int enablegaps                = 1;  /* 1 means gaps are enabled */
+static const int smartgaps                 = 1;  /* 1 means no outer gap when there is only one window */
+static const int monoclegaps               = 0;  /* 1 means outer gaps in monocle layout */
 static const unsigned int borderpx         = 2;  /* border pixel of windows */
-static const unsigned int gappih           = 10; /* horiz inner gap between windows */
-static const unsigned int gappiv           = 10; /* vert inner gap between windows */
+static const unsigned int gappih           = 0; /* horiz inner gap between windows */
+static const unsigned int gappiv           = 0; /* vert inner gap between windows */
 static const unsigned int gappoh           = 0; /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov           = 0; /* vert outer gap between windows and screen edge */
 static const int showbar                   = 1; /* 0 means no bar */
@@ -219,8 +219,8 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_d,          incnmaster,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_h,          setmfact,       {.f = -0.05f} },
 	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05f} },
-	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_minus,      incgaps,        {.i = +1 } },
-	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_equal,      incgaps,        {.i = -1 } },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_bracketleft,incgaps,        {.i = +1 } },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_bracketright,incgaps,       {.i = -1 } },
 	{ MODKEY,                    XKB_KEY_z,          zoom,           {0} },
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
 	{ MODKEY,                    XKB_KEY_apostrophe, shiftview,      { .i = 1 } },
