@@ -203,6 +203,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_p,          spawn,          SHCMD("mpc prev") },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_n,          spawn,          SHCMD("mpc next") },
     { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          SHCMD("${HOME}/.local/bin/wsk") },
+    { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_B,          spawn,          SHCMD("pgrep gammastep && killall gammastep || gammastep -O 5000") },
     { MODKEY,                    XKB_KEY_backslash,  spawn,          SHCMD("wlrctl pointer move 9999 9999") },
 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
