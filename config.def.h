@@ -192,6 +192,7 @@ static const Key keys[] = {
 	{ WLR_MODIFIER_CTRL,         XKB_KEY_space,      spawn,          SHCMD("fcitx5-remote -t") },
 	{ MODKEY,                    XKB_KEY_n,          spawn,          SHCMD("dunstctl history-pop") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_N,          spawn,          SHCMD("dunstctl close") },
+	{ MODKEY|WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT,XKB_KEY_N,spawn,   SHCMD("dunstctl close-all") },
 	{ MODKEY,                    XKB_KEY_g,          spawn,          SHCMD("${HOME}/.local/bin/shoot") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_G,          spawn,          SHCMD("${HOME}/.local/bin/shoot --geo") },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_g,          spawn,          SHCMD("${HOME}/.local/bin/shoot --all") },
