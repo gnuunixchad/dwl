@@ -45,6 +45,7 @@ static const char *const autostart[] = {
         "dunst", NULL,
         // Disable due to footclient flickering
 	    "foots", NULL,
+        "lucia", "-d", NULL,
 	    "wobd", NULL,
         "mbs-cron", NULL,
         NULL /* terminate */
