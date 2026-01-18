@@ -58,8 +58,15 @@ static const Rule rules[] = {
 	/* examples: */
 	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
 	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
-	{ "foot",        "Floating_Term", 0,            1,           -1 },
-	{ "foot",        "Floating_IMG",  0,            1,           -1 }, /* ${HOME}/.local/bin/url-rifle (preview images in newsboat) */
+	{ NULL,          "Floating_Term", 0,            1,           -1 },
+	{ NULL,          "Floating_IMG",  0,            1,           -1 }, /* ${HOME}/.local/bin/url-rifle (preview images in newsboat) */
+	{ "file-*",           NULL,       0,            1,           -1 }, /* GIMP file import/export */
+	{ "script-fu",        NULL,       0,            1,           -1 }, /* GIMP gegl operations */
+    { "lighting","Lighting Effects",  0,            1,           -1 }, /* GIMP */
+    //{ "kdenlive",         NULL,       0,            1,           -1 }, /* kdenlive file chooser (disabled for bugs)*/
+	{ "electron","Open Folder",       0,            1,           -1 }, /* code-oss */
+	{ "org.fcitx.fcitx5-config-qt", NULL, 0,        1,           -1 },
+
 };
 
 /* layout(s) */
