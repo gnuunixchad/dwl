@@ -10,5 +10,5 @@ https://codeberg.org/dwl/dwl/pulls/235#issuecomment-5976196
 - [text-input-DreamMaoMao.patch](./text-input-DreamMaoMao.patch)
 
 ### Authors
-- [DreamMaoMao](https://github.com/DreamMaoMao)
-- [unixchad](https://codeberg.org/unixchad/) (v0.7 port)
+- [DreamMaoMao](https://github.com/DreamMaoMao) (wlroots0.19)
+- [unixchad](https://codeberg.org/unixchad/) (wlroots0.18 port)
