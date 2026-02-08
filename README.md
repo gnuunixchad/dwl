@@ -36,6 +36,9 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 > +++ LENGTH(tags)
 > ```
 
+### known issues
+- footclient window flickering, see [dwl#705](https://codeberg.org/dwl/dwl/issues/705)
+
 
 ### Building dwl v0.7
 dwl has the following dependencies:
