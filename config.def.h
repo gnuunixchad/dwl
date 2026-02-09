@@ -77,6 +77,7 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 	{ "TTT",      bstack },
 	{ "===",      bstackhoriz },
+	{ "[E]",      deck },
 };
 
 /* monitors */
@@ -240,7 +241,8 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                    XKB_KEY_u,          setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                    XKB_KEY_o,          setlayout,      {.v = &layouts[4]} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_U,          setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                    XKB_KEY_o,          setlayout,      {.v = &layouts[5]} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,      setlayout,      {0} },
 	{ MODKEY,                    XKB_KEY_space,      togglefloating, {0} },
 	{ MODKEY,                    XKB_KEY_e,          togglefullscreen, {0} },

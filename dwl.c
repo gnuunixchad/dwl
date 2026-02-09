@@ -327,6 +327,7 @@ static void destroylayersurfacenotify(struct wl_listener *listener, void *data);
 static void destroylock(SessionLock *lock, int unlocked);
 static void destroylocksurface(struct wl_listener *listener, void *data);
 static void destroynotify(struct wl_listener *listener, void *data);
+static void deck(Monitor *m);
 static void destroypointerconstraint(struct wl_listener *listener, void *data);
 static void destroysessionlock(struct wl_listener *listener, void *data);
 static void destroysessionmgr(struct wl_listener *listener, void *data);
@@ -2432,6 +2433,66 @@ monocle(Monitor *m)
 		snprintf(m->ltsymbol, LENGTH(m->ltsymbol), "[%d]", n);
 	if ((c = focustop(m)))
 		wlr_scene_node_raise_to_top(&c->scene->node);
+}
+
+void
+deck(Monitor *m)
+{
+	unsigned int mw, my;
+	int i, n = 0;
+	Client *c;
+
+	/* count tiled clients */
+	wl_list_for_each(c, &clients, link)
+
+		/* if (VISIBLEON(c, m) && !c->isfloating && !c->isfullscreen) */
+		if (VISIBLEON(c, m) && !c->isfloating)
+			n++;
+	if (n == 0)
+		return;
+
+	/* set master width */
+	if (n > m->nmaster)
+		mw = m->nmaster ? (int)roundf(m->w.width * m->mfact) : 0;
+	else
+		mw = m->w.width;
+
+	/* update layout symbol with number of stack windows */
+	/* use the following rules to count only the windows on the deck
+	if (n > m->nmaster)
+		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n - m->nmaster);
+	else
+		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);  */
+
+	/* or this one to count all windows on the tag */
+	snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+
+	i = my = 0;
+	wl_list_for_each(c, &clients, link) {
+		/* if (!VISIBLEON(c, m) || c->isfloating || c->isfullscreen) */
+		if (!VISIBLEON(c, m) || c->isfloating)
+			continue;
+
+		if (i < m->nmaster) {
+			/* master clients */
+			resize(c, (struct wlr_box){
+				.x = m->w.x,
+				.y = m->w.y + my,
+				.width = mw,
+				.height = (m->w.height - my) / (MIN(n, m->nmaster) - i)
+			}, 0);
+			my += c->geom.height;
+		} else {
+			/* deck clients: overlap in stack area */
+			resize(c, (struct wlr_box){
+				.x = m->w.x + mw,
+				.y = m->w.y,
+				.width = m->w.width - mw,
+				.height = m->w.height
+			}, 0);
+		}
+		i++;
+	}
 }
 
 void
