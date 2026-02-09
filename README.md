@@ -30,7 +30,7 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 - Reduce `lrpad` to 0.75, for paddings around tag names(commit f31b82b9db279c6f20689586e7ee1bc2615e2c11).
 - Draw bar status on unfocused outputs, unlike the default `dwm` bar(commit 1a9dcebcee0b99c725fe4acfa1c7968f4cf7cbd4).
 
-> [ !NOTE]
+> [!NOTE]
 >some patches invole manual merging due to the changes in the bar patch:
 > ```diff
 > --- TAGSCOUNT
