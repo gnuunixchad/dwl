@@ -205,6 +205,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Y,          spawn,          SHCMD("${HOME}/.local/bin/shoot --geo") },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_y,          spawn,          SHCMD("${HOME}/.local/bin/shoot --all") },
 	{ MODKEY,                    XKB_KEY_c,          spawn,          SHCMD("${HOME}/.local/bin/clip") },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_c,          spawn,          SHCMD("${HOME}/.local/bin/clip --wipe") },
 	{ MODKEY,                    XKB_KEY_a,          spawn,          SHCMD("${HOME}/.local/bin/address") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_A,          spawn,          SHCMD("${HOME}/.local/bin/address --record") },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_a,          spawn,          SHCMD("${HOME}/.local/bin/address --multi") },
