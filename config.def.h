@@ -193,7 +193,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT, XKB_KEY_braceleft,spawn,SHCMD("${HOME}/.local/bin/bright --min") },
 	{ MODKEY|WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT, XKB_KEY_braceright,spawn,SHCMD("${HOME}/.local/bin/bright --max") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,          SHCMD("${HOME}/.local/bin/exiland -dwl") },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_W,          spawn,          SHCMD("swaylock") },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_W,          spawn,          SHCMD("waylock -init-color 0x000000 -input-color 0x005577 -fail-color 0xcc3333") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_E,          spawn,          SHCMD("${HOME}/.local/bin/hibe") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_M,          spawn,          SHCMD("pgrep hyprmag && killall -e hyprmag || hyprmag -r 9999 -s 2") },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_m,          spawn,          SHCMD("pgrep hyprmag && killall -e hyprmag || hyprmag") },
