@@ -33,6 +33,17 @@ static uint32_t colors[][3]                = {
 /* tagging */
 static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
+enum {
+    wmenu,
+    dunst,
+	wlrctl,
+};
+const char *modes_labels[] = {
+    "[w]iki [h]eart [b]ooks bl[u]e [s]peaker [e]moji [j]doc",
+    "clip-w[i]pe [l]supdates [w]ttr d[c]al ls[m]us",
+	"[hjkl]cursors [,]left [.]right [m]iddle ^[hjkl]arrows",
+};
+
 /* logging */
 static int log_level = WLR_ERROR;
 
@@ -260,6 +271,10 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                      7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                     8),
 
+	{ MODKEY,                    XKB_KEY_w,           entermode,        {.i = wmenu} },
+	{ MODKEY,                    XKB_KEY_x,           entermode,        {.i = dunst} },
+	{ MODKEY,                    XKB_KEY_slash,       entermode,        {.i = wlrctl} },
+
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
 	/* Ctrl-Alt-Fx is used to switch to another VT, if you don't know what a VT is
@@ -268,6 +283,60 @@ static const Key keys[] = {
 #define CHVT(n) { WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_XF86Switch_VT_##n, chvt, {.ui = (n)} }
 	CHVT(1), CHVT(2), CHVT(3), CHVT(4), CHVT(5), CHVT(6),
 	CHVT(7), CHVT(8), CHVT(9), CHVT(10), CHVT(11), CHVT(12),
+};
+
+static const Modekey modekeys[] = {
+	/* mode   modifier              key                 function    argument */
+	{ wmenu,  { 0,                  XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
+	{ wmenu,  { 0,                  XKB_KEY_space,      entermode,  {.i = NORMAL} } },
+	{ wmenu,  { 0,                  XKB_KEY_w,          spawn,      SHCMD("${HOME}/.local/bin/wiki") } },
+	{ wmenu,  { 0,                  XKB_KEY_w,          entermode,  {.i = NORMAL} } },
+	{ wmenu,  { 0,                  XKB_KEY_h,          spawn,      SHCMD("${HOME}/.local/bin/heart") } },
+	{ wmenu,  { 0,                  XKB_KEY_h,          entermode,  {.i = NORMAL} } },
+	{ wmenu,  { 0,                  XKB_KEY_b,          spawn,      SHCMD("${HOME}/.local/bin/books") } },
+	{ wmenu,  { 0,                  XKB_KEY_b,          entermode,  {.i = NORMAL} } },
+	{ wmenu,  { 0,                  XKB_KEY_u,          spawn,      SHCMD("${HOME}/.local/bin/blue") } },
+	{ wmenu,  { 0,                  XKB_KEY_u,          entermode,  {.i = NORMAL} } },
+	{ wmenu,  { 0,                  XKB_KEY_s,          spawn,      SHCMD("${HOME}/.local/bin/speaker") } },
+	{ wmenu,  { 0,                  XKB_KEY_s,          entermode,  {.i = NORMAL} } },
+	{ wmenu,  { 0,                  XKB_KEY_e,          spawn,      SHCMD("${HOME}/.local/bin/emoji") } },
+	{ wmenu,  { 0,                  XKB_KEY_e,          entermode,  {.i = NORMAL} } },
+	{ wmenu,  { 0,                  XKB_KEY_j,          spawn,      SHCMD("${HOME}/.local/bin/jdoc") } },
+	{ wmenu,  { 0,                  XKB_KEY_j,          entermode,  {.i = NORMAL} } },
+
+	{ dunst,  { 0,                  XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
+	{ dunst,  { 0,                  XKB_KEY_space,      entermode,  {.i = NORMAL} } },
+	{ dunst,  { 0,                  XKB_KEY_l,          spawn,      SHCMD("${HOME}/.local/bin/lsupdates") } },
+	{ dunst,  { 0,                  XKB_KEY_l,          entermode,  {.i = NORMAL} } },
+	{ dunst,  { 0,                  XKB_KEY_w,          spawn,      SHCMD("${HOME}/.local/bin/wttr") } },
+	{ dunst,  { 0,                  XKB_KEY_w,          entermode,  {.i = NORMAL} } },
+	{ dunst,  { 0,                  XKB_KEY_c,          spawn,      SHCMD("${HOME}/.local/bin/dcal") } },
+	{ dunst,  { 0,                  XKB_KEY_c,          entermode,  {.i = NORMAL} } },
+	{ dunst,  { 0,                  XKB_KEY_m,          spawn,      SHCMD("${HOME}/.local/bin/lsmus") } },
+	{ dunst,  { 0,                  XKB_KEY_m,          entermode,  {.i = NORMAL} } },
+	{ dunst,  { 0,                  XKB_KEY_i,          spawn,      SHCMD("${HOME}/.local/bin/clip --wipe") } },
+	{ dunst,  { 0,                  XKB_KEY_i,          entermode,  {.i = NORMAL} } },
+
+	{ wlrctl, { 0,                  XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
+	{ wlrctl, { 0,                  XKB_KEY_space,      entermode,  {.i = NORMAL} } },
+	{ wlrctl, { 0,                  XKB_KEY_h,          spawn,      SHCMD("wlrctl pointer move -90 0") } },
+	{ wlrctl, { 0,                  XKB_KEY_j,          spawn,      SHCMD("wlrctl pointer move 0 90") } },
+	{ wlrctl, { 0,                  XKB_KEY_k,          spawn,      SHCMD("wlrctl pointer move 0 -90") } },
+	{ wlrctl, { 0,                  XKB_KEY_l,          spawn,      SHCMD("wlrctl pointer move 90 0") } },
+	{ wlrctl, { WLR_MODIFIER_SHIFT, XKB_KEY_H,          spawn,      SHCMD("wlrctl pointer move -15 0") } },
+	{ wlrctl, { WLR_MODIFIER_SHIFT, XKB_KEY_J,          spawn,      SHCMD("wlrctl pointer move 0 15") } },
+	{ wlrctl, { WLR_MODIFIER_SHIFT, XKB_KEY_K,          spawn,      SHCMD("wlrctl pointer move 0 -15") } },
+	{ wlrctl, { WLR_MODIFIER_SHIFT, XKB_KEY_L,          spawn,      SHCMD("wlrctl pointer move 15 0") } },
+	{ wlrctl, { 0,                  XKB_KEY_comma,      spawn,      SHCMD("wlrctl pointer click left") } },
+	{ wlrctl, { 0,                  XKB_KEY_period,     spawn,      SHCMD("wlrctl pointer click right") } },
+	{ wlrctl, { WLR_MODIFIER_SHIFT, XKB_KEY_less,       spawn,      SHCMD("wlrctl pointer click left") } },
+	{ wlrctl, { WLR_MODIFIER_SHIFT, XKB_KEY_greater,    spawn,      SHCMD("wlrctl pointer click right") } },
+	{ wlrctl, { WLR_MODIFIER_CTRL,  XKB_KEY_h,          spawn,      SHCMD("wtype -k Left") } },
+	{ wlrctl, { WLR_MODIFIER_CTRL,  XKB_KEY_j,          spawn,      SHCMD("wtype -k Down") } },
+	{ wlrctl, { WLR_MODIFIER_CTRL,  XKB_KEY_k,          spawn,      SHCMD("wtype -k Up") } },
+	{ wlrctl, { WLR_MODIFIER_CTRL,  XKB_KEY_l,          spawn,      SHCMD("wtype -k Right") } },
+	{ wlrctl, { 0,                  XKB_KEY_n,          spawn,      SHCMD("wlrctl pointer scroll 30") } },
+	{ wlrctl, { 0,                  XKB_KEY_p,          spawn,      SHCMD("wlrctl pointer scroll -30") } },
 };
 
 static const Button buttons[] = {

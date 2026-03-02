@@ -30,6 +30,7 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 12. [gaplessgrid](https://codeberg.org/dwl/dwl-patches/patch/gaplessgrid/gaplessgrid-0.8.patch)
 13. [bar-less-padding](./patches/bar-less-padding/bar-less-padding-0.8.patch)
 14. [bar-statusallmons](./patches/bar-statusallmons/bar-statusallmons-0.8.patch)
+15. [modes](https://codeberg.org/dwl/dwl-patches/patch/modes)
 
 
 ### known issues
