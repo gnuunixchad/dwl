@@ -157,6 +157,11 @@ typedef struct {
 } Key;
 
 typedef struct {
+	int mode_index;
+	Key key;
+} Modekey;
+
+typedef struct {
 	struct wlr_keyboard_group *wlr_group;
 
 	int nsyms;
@@ -326,6 +331,7 @@ static void handlesig(int signo);
 static void incnmaster(const Arg *arg);
 static void inputdevice(struct wl_listener *listener, void *data);
 static int keybinding(uint32_t mods, xkb_keysym_t sym);
+static int modekeybinding(uint32_t mods, xkb_keysym_t sym);
 static void keypress(struct wl_listener *listener, void *data);
 static void keypressmod(struct wl_listener *listener, void *data);
 static int keyrepeat(void *data);
@@ -387,6 +393,7 @@ static Monitor *xytomon(double x, double y);
 static void xytonode(double x, double y, struct wlr_surface **psurface,
 		Client **pc, LayerSurface **pl, double *nx, double *ny);
 static void zoom(const Arg *arg);
+static void entermode(const Arg *arg);
 
 /* variables */
 static pid_t child_pid = -1;
@@ -450,6 +457,8 @@ static const struct wlr_buffer_impl buffer_impl = {
     .begin_data_ptr_access = bufdatabegin,
     .end_data_ptr_access = bufdataend,
 };
+static const int NORMAL = -1;
+static int active_mode_index = NORMAL;
 
 /* global event handlers */
 static struct wl_listener cursor_axis = {.notify = axisnotify};
@@ -1855,6 +1864,11 @@ keybinding(uint32_t mods, xkb_keysym_t sym)
 	 * processing.
 	 */
 	const Key *k;
+
+	if (active_mode_index >= 0) {
+		return modekeybinding(mods, sym);
+	}
+
 	for (k = keys; k < END(keys); k++) {
 		if (CLEANMASK(mods) == CLEANMASK(k->mod)
 				&& xkb_keysym_to_lower(sym) == xkb_keysym_to_lower(k->keysym)
@@ -1865,6 +1879,30 @@ keybinding(uint32_t mods, xkb_keysym_t sym)
 	}
 	return 0;
 }
+
+int
+modekeybinding(uint32_t mods, xkb_keysym_t sym)
+{
+	int handled = 0;
+	const Modekey *mk;
+	const Key *k;
+
+	for (mk = modekeys; mk < END(modekeys); mk++) {
+		if (active_mode_index != mk->mode_index) {
+			continue;
+		}
+
+		k = &mk->key;
+		if (CLEANMASK(mods) == CLEANMASK(k->mod) &&
+				sym == k->keysym && k->func) {
+			k->func(&k->arg);
+			handled = 1;
+		}
+	}
+
+	return handled;
+}
+
 
 void
 keypress(struct wl_listener *listener, void *data)
@@ -2324,6 +2362,45 @@ pointerfocus(Client *c, struct wlr_surface *surface, double sx, double sy,
 	 * wlroots makes this a no-op if surface is already focused */
 	wlr_seat_pointer_notify_enter(seat, surface, sx, sy);
 	wlr_seat_pointer_notify_motion(seat, time, sx, sy);
+}
+
+void
+printstatus(void)
+{
+	Monitor *m = NULL;
+	Client *c;
+	uint32_t occ, urg, sel;
+
+	wl_list_for_each(m, &mons, link) {
+		occ = urg = 0;
+		wl_list_for_each(c, &clients, link) {
+			if (c->mon != m)
+				continue;
+			occ |= c->tags;
+			if (c->isurgent)
+				urg |= c->tags;
+		}
+		if ((c = focustop(m))) {
+			printf("%s title %s\n", m->wlr_output->name, client_get_title(c));
+			printf("%s appid %s\n", m->wlr_output->name, client_get_appid(c));
+			printf("%s fullscreen %d\n", m->wlr_output->name, c->isfullscreen);
+			printf("%s floating %d\n", m->wlr_output->name, c->isfloating);
+			sel = c->tags;
+		} else {
+			printf("%s title \n", m->wlr_output->name);
+			printf("%s appid \n", m->wlr_output->name);
+			printf("%s fullscreen \n", m->wlr_output->name);
+			printf("%s floating \n", m->wlr_output->name);
+			sel = 0;
+		}
+
+		printf("%s selmon %u\n", m->wlr_output->name, m == selmon);
+		printf("%s tags %"PRIu32" %"PRIu32" %"PRIu32" %"PRIu32"\n",
+			m->wlr_output->name, occ, m->tagset[m->seltags], sel, urg);
+		printf("%s layout %s\n", m->wlr_output->name, m->ltsymbol);
+		printf("%s mode %s\n", m->wlr_output->name, modes_labels[active_mode_index] ? modes_labels[active_mode_index] : "");
+	}
+	fflush(stdout);
 }
 
 void
@@ -3353,6 +3430,13 @@ zoom(const Arg *arg)
 
 	focusclient(sel, 1);
 	arrange(selmon);
+}
+
+void
+entermode(const Arg *arg)
+{
+	active_mode_index = arg->i;
+	printstatus();
 }
 
 #ifdef XWAYLAND
