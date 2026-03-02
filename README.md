@@ -31,6 +31,7 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 13. [bar-less-padding](./patches/bar-less-padding/bar-less-padding-0.8.patch)
 14. [bar-statusallmons](./patches/bar-statusallmons/bar-statusallmons-0.8.patch)
 15. [modes](https://codeberg.org/dwl/dwl-patches/patch/modes)
+16. [bar-modes](./patches/bar-modes/bar-modes.patch)
 
 
 ### known issues
