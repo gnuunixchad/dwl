@@ -336,6 +336,7 @@ static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
 static void togglefloating(const Arg *arg);
 static void togglefullscreen(const Arg *arg);
+static void moveresizekb(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unlocksession(struct wl_listener *listener, void *data);
@@ -2758,6 +2759,24 @@ togglefullscreen(const Arg *arg)
 	Client *sel = focustop(selmon);
 	if (sel)
 		setfullscreen(sel, !sel->isfullscreen);
+}
+
+void
+moveresizekb(const Arg *arg)
+{
+	Client *c = focustop(selmon);
+	Monitor *m = selmon;
+
+	if(!(m && arg && arg->v && c && c->isfloating)) {
+		return;
+	}
+
+	resize(c, (struct wlr_box){
+		.x = c->geom.x + ((int *)arg->v)[0],
+		.y = c->geom.y + ((int *)arg->v)[1],
+		.width = c->geom.width + ((int *)arg->v)[2],
+		.height = c->geom.height + ((int *)arg->v)[3],
+	}, 1);
 }
 
 void
