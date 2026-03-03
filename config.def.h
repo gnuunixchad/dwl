@@ -34,11 +34,13 @@ static uint32_t colors[][3]                = {
 static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 enum {
+    floating,
     wmenu,
     dunst,
 	wlrctl,
 };
 const char *modes_labels[] = {
+    "floating",
     "[w]iki [h]eart [b]ooks bl[u]e [s]peaker [e]moji [j]doc",
     "clip-w[i]pe [l]supdates [w]ttr d[c]al ls[m]us",
 	"[hjkl]cursors [,]left [.]right [m]iddle ^[hjkl]arrows",
@@ -271,6 +273,7 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                      7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                     8),
 
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_f,           entermode,        {.i = floating} },
 	{ MODKEY,                    XKB_KEY_w,           entermode,        {.i = wmenu} },
 	{ MODKEY,                    XKB_KEY_x,           entermode,        {.i = dunst} },
 	{ MODKEY,                    XKB_KEY_slash,       entermode,        {.i = wlrctl} },
@@ -287,6 +290,17 @@ static const Key keys[] = {
 
 static const Modekey modekeys[] = {
 	/* mode   modifier              key                 function    argument */
+	{ floating, { 0,                XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
+	{ floating, { 0,                XKB_KEY_space,      entermode,  {.i = NORMAL} } },
+	{ floating, { 0,                XKB_KEY_h,          moveresizekb, {.v = (int []){ -50, 0, 0, 0 } } } },
+	{ floating, { 0,                XKB_KEY_j,          moveresizekb, {.v = (int []){ 0, 50, 0, 0 } } } },
+	{ floating, { 0,                XKB_KEY_k,          moveresizekb, {.v = (int []){ 0, -50, 0, 0 } } } },
+	{ floating, { 0,                XKB_KEY_l,          moveresizekb, {.v = (int []){ 50, 0, 0, 0 } } } },
+	{ floating, { 0,                XKB_KEY_y,          moveresizekb, {.v = (int []){ 0, 0, -50, 0 } } } },
+	{ floating, { 0,                XKB_KEY_u,          moveresizekb, {.v = (int []){ 0, 0, 0, 50 } } } },
+	{ floating, { 0,                XKB_KEY_i,          moveresizekb, {.v = (int []){ 0, 0, 0, -50 } } } },
+	{ floating, { 0,                XKB_KEY_o,          moveresizekb, {.v = (int []){ 0, 0, 50, 0 } } } },
+
 	{ wmenu,  { 0,                  XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
 	{ wmenu,  { 0,                  XKB_KEY_space,      entermode,  {.i = NORMAL} } },
 	{ wmenu,  { 0,                  XKB_KEY_w,          spawn,      SHCMD("${HOME}/.local/bin/wiki") } },

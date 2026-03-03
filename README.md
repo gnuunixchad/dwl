@@ -32,6 +32,7 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 14. [bar-statusallmons](./patches/bar-statusallmons/bar-statusallmons-0.8.patch)
 15. [modes](https://codeberg.org/dwl/dwl-patches/patch/modes)
 16. [bar-modes](./patches/bar-modes/bar-modes.patch)
+17. [moveresizekb](https://codeberg.org/dwl/dwl-patches/patch/moveresizekb)
 
 
 ### known issues
