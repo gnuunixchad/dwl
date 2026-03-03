@@ -33,6 +33,7 @@ For a build without the `bar.patch`, checkout the `nobar` branch. You can use an
 15. [modes](https://codeberg.org/dwl/dwl-patches/patch/modes)
 16. [bar-modes](./patches/bar-modes/bar-modes.patch)
 17. [moveresizekb](https://codeberg.org/dwl/dwl-patches/patch/moveresizekb)
+18. [unclutter](https://codeberg.org/dwl/dwl-patches/patch/unclutter)
 
 
 ### known issues

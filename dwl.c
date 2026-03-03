@@ -347,6 +347,8 @@ static Client *focustop(Monitor *m);
 static void fullscreennotify(struct wl_listener *listener, void *data);
 static void gpureset(struct wl_listener *listener, void *data);
 static void gaplessgrid(Monitor *m);
+static void handlecursoractivity(void);
+static int hidecursor(void *data);
 static void handlesig(int signo);
 static void incnmaster(const Arg *arg);
 static void incgaps(const Arg *arg);
@@ -468,6 +470,14 @@ static struct wlr_pointer_constraint_v1 *active_constraint;
 
 static struct wlr_cursor *cursor;
 static struct wlr_xcursor_manager *cursor_mgr;
+static struct wl_event_source *hide_source;
+static bool cursor_hidden = false;
+static struct {
+	enum wp_cursor_shape_device_v1_shape shape;
+	struct wlr_surface *surface;
+	int hotspot_x;
+	int hotspot_y;
+} last_cursor;
 
 static struct wlr_scene_rect *root_bg;
 static struct wlr_session_lock_manager_v1 *session_lock_mgr;
@@ -781,8 +791,9 @@ axisnotify(struct wl_listener *listener, void *data)
 	 * for example when you move the scroll wheel. */
 	struct wlr_pointer_axis_event *event = data;
 	wlr_idle_notifier_v1_notify_activity(idle_notifier, seat);
-	/* TODO: allow usage of scroll wheel for mousebindings, it can be implemented
-	 * by checking the event's orientation and the delta of the event */
+	handlecursoractivity();
+	/* TODO: allow usage of scroll whell for mousebindings, it can be implemented
+	 * checking the event's orientation and the delta of the event */
 	/* Notify the client with pointer focus of the axis event. */
 	wlr_seat_pointer_notify_axis(seat,
 			event->time_msec, event->orientation, event->delta,
@@ -879,6 +890,7 @@ buttonpress(struct wl_listener *listener, void *data)
 	const Button *b;
 
 	wlr_idle_notifier_v1_notify_activity(idle_notifier, seat);
+	handlecursoractivity();
 
 	click = ClkRoot;
 	xytonode(cursor->x, cursor->y, NULL, &c, NULL, NULL, NULL);
@@ -2241,6 +2253,32 @@ gaplessgrid(Monitor *m)
 }
 
 void
+handlecursoractivity(void)
+{
+	wl_event_source_timer_update(hide_source, cursor_timeout * 1000);
+
+	if (!cursor_hidden)
+		return;
+
+	cursor_hidden = false;
+
+	if (last_cursor.shape)
+		wlr_cursor_set_xcursor(cursor, cursor_mgr,
+				wlr_cursor_shape_v1_name(last_cursor.shape));
+	else
+		wlr_cursor_set_surface(cursor, last_cursor.surface,
+				last_cursor.hotspot_x, last_cursor.hotspot_y);
+}
+
+int
+hidecursor(void *data)
+{
+	wlr_cursor_unset_image(cursor);
+	cursor_hidden = true;
+	return 1;
+}
+
+void
 incnmaster(const Arg *arg)
 {
 	if (!arg || !selmon)
@@ -2751,6 +2789,7 @@ motionnotify(uint32_t time, struct wlr_input_device *device, double dx, double d
 
 		wlr_cursor_move(cursor, device, dx, dy);
 		wlr_idle_notifier_v1_notify_activity(idle_notifier, seat);
+		handlecursoractivity();
 
 		/* Update selmon (even while dragging a window) */
 		if (sloppyfocus)
@@ -2775,7 +2814,7 @@ motionnotify(uint32_t time, struct wlr_input_device *device, double dx, double d
 	/* If there's no client surface under the cursor, set the cursor image to a
 	 * default. This is what makes the cursor image appear when you move it
 	 * off of a client or over its border. */
-	if (!surface && !seat->drag)
+	if (!surface && !seat->drag && !cursor_hidden)
 		wlr_cursor_set_xcursor(cursor, cursor_mgr, "default");
 
 	pointerfocus(c, surface, sx, sy, time);
@@ -3156,6 +3195,7 @@ run(char *startup_cmd)
 	 * monitor when displayed here */
 	wlr_cursor_warp_closest(cursor, NULL, cursor->x, cursor->y);
 	wlr_cursor_set_xcursor(cursor, cursor_mgr, "default");
+	handlecursoractivity();
 
 	/* Run the Wayland event loop. This does not return until you exit the
 	 * compositor. Starting the backend rigged up all of the necessary event
@@ -3179,9 +3219,16 @@ setcursor(struct wl_listener *listener, void *data)
 	 * use the provided surface as the cursor image. It will set the
 	 * hardware cursor on the output that it's currently on and continue to
 	 * do so as the cursor moves between outputs. */
-	if (event->seat_client == seat->pointer_state.focused_client)
-		wlr_cursor_set_surface(cursor, event->surface,
-				event->hotspot_x, event->hotspot_y);
+	if (event->seat_client == seat->pointer_state.focused_client) {
+		last_cursor.shape = 0;
+		last_cursor.surface = event->surface;
+		last_cursor.hotspot_x = event->hotspot_x;
+		last_cursor.hotspot_y = event->hotspot_y;
+
+		if (!cursor_hidden)
+			wlr_cursor_set_surface(cursor, event->surface,
+					event->hotspot_x, event->hotspot_y);
+	}
 }
 
 void
@@ -3193,9 +3240,14 @@ setcursorshape(struct wl_listener *listener, void *data)
 	/* This can be sent by any client, so we check to make sure this one
 	 * actually has pointer focus first. If so, we can tell the cursor to
 	 * use the provided cursor shape. */
-	if (event->seat_client == seat->pointer_state.focused_client)
-		wlr_cursor_set_xcursor(cursor, cursor_mgr,
-				wlr_cursor_shape_v1_name(event->shape));
+	if (event->seat_client == seat->pointer_state.focused_client) {
+		last_cursor.shape = event->shape;
+		last_cursor.surface = NULL;
+
+		if (!cursor_hidden)
+			wlr_cursor_set_xcursor(cursor, cursor_mgr,
+					wlr_cursor_shape_v1_name(event->shape));
+	}
 }
 
 void
@@ -3509,6 +3561,9 @@ setup(void)
 
 	cursor_shape_mgr = wlr_cursor_shape_manager_v1_create(dpy, 1);
 	wl_signal_add(&cursor_shape_mgr->events.request_set_shape, &request_set_cursor_shape);
+
+	hide_source = wl_event_loop_add_timer(wl_display_get_event_loop(dpy),
+			hidecursor, cursor);
 
 	/*
 	 * Configures a seat, which is a single "seat" at which a user sits and
@@ -4059,6 +4114,7 @@ virtualpointer(struct wl_listener *listener, void *data)
 	wlr_cursor_attach_input_device(cursor, device);
 	if (event->suggested_output)
 		wlr_cursor_map_input_to_output(cursor, device, event->suggested_output);
+	handlecursoractivity();
 }
 
 Monitor *
