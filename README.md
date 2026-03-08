@@ -4,16 +4,24 @@
 ![](./misc/20251113_23h10m17s_grim.png)
 dwl 0.8
 
-### Running dwl
-```sh
-alias dl="exec ssh-agent ${HOME}/.local/bin/damblocks | /usr/local/bin/dwl"
-```
-
-### Status information
+### Status bar
 I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixchad/damblocks)/[github](https://github.com/gnuunixchad/damblocks)), my modular POSIX script with signaling support.
 
-For a build without the `bar.patch`, checkout the `nobar` branch. You can use any compatible bar.
+### Running dwl
+```sh
+exec ssh-agent damblocks | dwl
+```
 
+To restart status script in the current dwl session, start dwl with:
+```sh
+damblocks --fifo &
+exec ssh-agent tail -f ${XDG_RUNTIME_DIR}/damblocks.fifo | dwl
+```
+and restart damblocks with:
+```sh
+pkill -f 'damblocks --fifo'
+nohup damblocks --fifo >/dev/null 2>&1 &
+```
 
 ### Patches applied
 1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar/bar.patch)
