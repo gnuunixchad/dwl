@@ -26,6 +26,7 @@
 #include <wlr/types/wlr_data_device.h>
 #include <wlr/types/wlr_drm.h>
 #include <wlr/types/wlr_export_dmabuf_v1.h>
+#include <wlr/types/wlr_ext_data_control_v1.h>
 #include <wlr/types/wlr_fractional_scale_v1.h>
 #include <wlr/types/wlr_gamma_control_v1.h>
 #include <wlr/types/wlr_idle_inhibit_v1.h>
@@ -747,7 +748,7 @@ arrangelayers(Monitor *m)
 		arrange(m);
 	}
 
-	/* Arrange non-exlusive surfaces from top->bottom */
+	/* Arrange non-exclusive surfaces from top->bottom */
 	for (i = 3; i >= 0; i--)
 		arrangelayer(m, &m->layers[i], &usable_area, 0);
 
@@ -3049,7 +3050,7 @@ powermgrsetmode(struct wl_listener *listener, void *data)
 	if (!m)
 		return;
 
-	m->gamma_lut_changed = 1; /* Reapply gamma LUT when re-enabling the ouput */
+	m->gamma_lut_changed = 1; /* Reapply gamma LUT when re-enabling the output */
 	wlr_output_state_set_enabled(&state, event->mode);
 	wlr_output_commit_state(m->wlr_output, &state);
 
@@ -3407,7 +3408,7 @@ setup(void)
 	wlr_log_init(log_level, NULL);
 
 	/* The Wayland display is managed by libwayland. It handles accepting
-	 * clients from the Unix socket, manging Wayland globals, and so on. */
+	 * clients from the Unix socket, managing Wayland globals, and so on. */
 	dpy = wl_display_create();
 	event_loop = wl_display_get_event_loop(dpy);
 
@@ -3470,6 +3471,7 @@ setup(void)
 	wlr_export_dmabuf_manager_v1_create(dpy);
 	wlr_screencopy_manager_v1_create(dpy);
 	wlr_data_control_manager_v1_create(dpy);
+	wlr_ext_data_control_manager_v1_create(dpy, 1);
 	wlr_primary_selection_v1_device_manager_create(dpy);
 	wlr_viewporter_create(dpy);
 	wlr_single_pixel_buffer_manager_v1_create(dpy);
