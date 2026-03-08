@@ -53,7 +53,7 @@ static int log_level = WLR_ERROR;
 static const char *const autostart[] = {
         "gammastep", "-O", "5000", NULL,
         "kanshi", NULL,
-        "fcitx5", "-d", NULL,
+        "fcitx5", "-d", "--verbose", "*=0", NULL,
         "swayidle", NULL,
         "wl-paste", "--watch", "cliphist", "store", NULL,
         "dunst", NULL,
