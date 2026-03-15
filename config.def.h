@@ -295,6 +295,7 @@ static const Modekey modekeys[] = {
 	/* mode   modifier              key                 function    argument */
 	{ floating, { 0,                XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
 	{ floating, { 0,                XKB_KEY_space,      entermode,  {.i = NORMAL} } },
+	{ floating, { MODKEY|WLR_MODIFIER_CTRL, XKB_KEY_f,  entermode,  {.i = NORMAL} } },
 	{ floating, { 0,                XKB_KEY_h,          moveresizekb, {.v = (int []){ -50, 0, 0, 0 } } } },
 	{ floating, { 0,                XKB_KEY_j,          moveresizekb, {.v = (int []){ 0, 50, 0, 0 } } } },
 	{ floating, { 0,                XKB_KEY_k,          moveresizekb, {.v = (int []){ 0, -50, 0, 0 } } } },
@@ -306,6 +307,7 @@ static const Modekey modekeys[] = {
 
 	{ wmenu,  { 0,                  XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
 	{ wmenu,  { 0,                  XKB_KEY_space,      entermode,  {.i = NORMAL} } },
+	{ wmenu,  { MODKEY,             XKB_KEY_w,          entermode,  {.i = NORMAL} } },
 	{ wmenu,  { 0,                  XKB_KEY_w,          spawn,      SHCMD("${HOME}/.local/bin/wiki") } },
 	{ wmenu,  { 0,                  XKB_KEY_w,          entermode,  {.i = NORMAL} } },
 	{ wmenu,  { 0,                  XKB_KEY_h,          spawn,      SHCMD("${HOME}/.local/bin/heart") } },
@@ -323,6 +325,7 @@ static const Modekey modekeys[] = {
 
 	{ dunst,  { 0,                  XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
 	{ dunst,  { 0,                  XKB_KEY_space,      entermode,  {.i = NORMAL} } },
+	{ dunst,  { MODKEY,             XKB_KEY_x,          entermode,  {.i = NORMAL} } },
 	{ dunst,  { 0,                  XKB_KEY_l,          spawn,      SHCMD("${HOME}/.local/bin/lsupdates") } },
 	{ dunst,  { 0,                  XKB_KEY_l,          entermode,  {.i = NORMAL} } },
 	{ dunst,  { 0,                  XKB_KEY_w,          spawn,      SHCMD("${HOME}/.local/bin/wttr") } },
@@ -336,6 +339,7 @@ static const Modekey modekeys[] = {
 
 	{ wlrctl, { 0,                  XKB_KEY_Escape,     entermode,  {.i = NORMAL} } },
 	{ wlrctl, { 0,                  XKB_KEY_space,      entermode,  {.i = NORMAL} } },
+	{ wlrctl, { MODKEY,             XKB_KEY_slash,      entermode,  {.i = NORMAL} } },
 	{ wlrctl, { 0,                  XKB_KEY_h,          spawn,      SHCMD("wlrctl pointer move -90 0") } },
 	{ wlrctl, { 0,                  XKB_KEY_j,          spawn,      SHCMD("wlrctl pointer move 0 90") } },
 	{ wlrctl, { 0,                  XKB_KEY_k,          spawn,      SHCMD("wlrctl pointer move 0 -90") } },
