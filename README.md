@@ -39,9 +39,10 @@ nohup damblocks --fifo >/dev/null 2>&1 &
 13. [bar-less-padding](./patches/bar-less-padding)
 14. [bar-statusallmons](./patches/bar-statusallmons)
 15. [modes](https://codeberg.org/dwl/dwl-patches/patch/modes)
-16. [moveresizekb](https://codeberg.org/dwl/dwl-patches/patch/moveresizekb)
-17. [unclutter](https://codeberg.org/dwl/dwl-patches/patch/unclutter)
-18. [hide-cursor-when-typing](https://codeberg.org/dwl/dwl-patches/patches/hide-cursor-when-typing)
+16. [bar-modes](https://codeberg.org/dwl/dwl-patches/patch/bar-modes)
+17. [moveresizekb](https://codeberg.org/dwl/dwl-patches/patch/moveresizekb)
+18. [unclutter](https://codeberg.org/dwl/dwl-patches/patch/unclutter)
+19. [hide-cursor-when-typing](https://codeberg.org/dwl/dwl-patches/patches/hide-cursor-when-typing)
 
 
 ### known issues
