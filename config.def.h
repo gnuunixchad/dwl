@@ -179,6 +179,8 @@ static const int hide_cursor_when_typing = 1;
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "wmenu-run-color", NULL };
 
+#include "shifttag.c"
+
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: 2 -> at, etc. */
 	/* modifier                  key                  function          argument */
@@ -246,6 +248,12 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_Tab,         view,             {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,           togglesticky,     {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_C,           killclient,       {0} },
+	{ MODKEY,                    XKB_KEY_apostrophe,  shifttag_occupied,   { .i = 1 } },
+	{ MODKEY,                    XKB_KEY_semicolon,   shifttag_occupied,   { .i = -1 } },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_quotedbl,    shifttag,            { .i = 1 } },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_colon,       shifttag,            { .i = -1 } },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_apostrophe,  shifttag_unoccupied, { .i = 1 } },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_semicolon,   shifttag_unoccupied, { .i = -1 } },
 	{ MODKEY,                    XKB_KEY_t,           setlayout,        {.v = &layouts[0]} },
 	{ MODKEY,                    XKB_KEY_f,           setlayout,        {.v = &layouts[1]} },
 	{ MODKEY,                    XKB_KEY_m,           setlayout,        {.v = &layouts[2]} },
