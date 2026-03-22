@@ -124,6 +124,8 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "wmenu-run", NULL };
 
+#include "shifttag.c"
+
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: 2 -> at, etc. */
 	/* modifier                  key                  function          argument */
@@ -138,6 +140,12 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_l,           setmfact,         {.f = +0.05f} },
 	{ MODKEY,                    XKB_KEY_Return,      zoom,             {0} },
 	{ MODKEY,                    XKB_KEY_Tab,         view,             {0} },
+	{ MODKEY,                    XKB_KEY_apostrophe,  shifttag_occupied,   { .i = 1 } },
+	{ MODKEY,                    XKB_KEY_semicolon,   shifttag_occupied,   { .i = -1 } },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_quotedbl,    shifttag,            { .i = 1 } },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_colon,       shifttag,            { .i = -1 } },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_apostrophe,  shifttag_unoccupied, { .i = 1 } },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_semicolon,   shifttag_unoccupied, { .i = -1 } },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_c,           killclient,       {0} },
 	{ MODKEY,                    XKB_KEY_t,           setlayout,        {.v = &layouts[0]} },
 	{ MODKEY,                    XKB_KEY_f,           setlayout,        {.v = &layouts[1]} },
