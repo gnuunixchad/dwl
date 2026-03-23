@@ -17,45 +17,61 @@ static uint32_t
 find_next_tag(uint32_t current_tag, int direction, bool skip_unoccupied, bool skip_occupied)
 {
 	uint32_t occupied = get_occupied_tags(selmon);
-	uint32_t start = current_tag;
-	uint32_t test_tag = current_tag;
-	uint32_t new_tag = current_tag;
-	int count = 0;
+	uint32_t result = 0;
 
-	if (!skip_unoccupied && !skip_occupied) {
-		if (direction > 0) {
-			new_tag = (current_tag << 1) | (current_tag >> (LENGTH(tags) - 1));
-		} else {
-			new_tag = (current_tag >> 1) | (current_tag << (LENGTH(tags) - 1));
+	for (int i = 0; i < LENGTH(tags); i++) {
+		uint32_t bit = 1 << i;
+
+		if (current_tag & bit) {
+			uint32_t new_bit = bit;
+
+			if (!skip_unoccupied && !skip_occupied) {
+				if (direction > 0) {
+					if (bit << 1 && (bit << 1) <= TAGMASK)
+						new_bit = bit << 1;
+					else
+						new_bit = 1;
+				} else {
+					if (bit >> 1)
+						new_bit = bit >> 1;
+					else
+						new_bit = 1 << (LENGTH(tags) - 1);
+				}
+			} else {
+				uint32_t test_bit = bit;
+				uint32_t start_bit = bit;
+				int count = 0;
+
+				do {
+					if (direction > 0) {
+						if (test_bit << 1 && (test_bit << 1) <= TAGMASK)
+							test_bit = test_bit << 1;
+						else
+							test_bit = 1;
+					} else {
+						if (test_bit >> 1)
+							test_bit = test_bit >> 1;
+						else
+							test_bit = 1 << (LENGTH(tags) - 1);
+					}
+
+					int is_occupied = (occupied & test_bit) != 0;
+					int should_select = (skip_unoccupied && is_occupied) ||
+										(skip_occupied && !is_occupied);
+
+					if (should_select) {
+						new_bit = test_bit;
+						break;
+					}
+					count++;
+				} while (test_bit != start_bit && count < LENGTH(tags));
+			}
+
+			result |= new_bit;
 		}
-		return new_tag & TAGMASK;
 	}
 
-	do {
-		if (direction > 0) {
-			if (test_tag << 1 && (test_tag << 1) <= TAGMASK)
-				test_tag = test_tag << 1;
-			else
-				test_tag = 1;
-		} else {
-			if (test_tag >> 1)
-				test_tag = test_tag >> 1;
-			else
-				test_tag = 1 << (LENGTH(tags) - 1);
-		}
-
-		int is_occupied = (occupied & test_tag) != 0;
-		int should_select = (skip_unoccupied && is_occupied) ||
-							(skip_occupied && !is_occupied);
-
-		if (should_select) {
-			new_tag = test_tag;
-			break;
-		}
-		count++;
-	} while (test_tag != start && count < LENGTH(tags));
-
-	return new_tag;
+	return result;
 }
 
 static void
