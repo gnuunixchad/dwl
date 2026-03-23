@@ -27,7 +27,7 @@ nohup damblocks --fifo >/dev/null 2>&1 &
 1. [bar](https://codeberg.org/dwl/dwl-patches/patch/bar)
 2. [autostart](https://codeberg.org/dwl/dwl-patches/patch/autostart)
 3. [sticky](https://codeberg.org/dwl/dwl-patches/patch/sticky)
-4. [shiftview](https://codeberg.org/dwl/dwl-patches/patch/shiftview)
+4. [shifttag](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/shifttag)
 5. [pertag](https://codeberg.org/dwl/dwl-patches/patch/pertag)
 6. [swapandfocusdir](https://codeberg.org/dwl/dwl-patches/patch/swapandfocusdir)
 7. [genericgaps](https://codeberg.org/dwl/dwl-patches/patch/genericgaps)
