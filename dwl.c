@@ -478,6 +478,7 @@ static struct {
 	struct wlr_surface *surface;
 	int hotspot_x;
 	int hotspot_y;
+	struct wl_listener destroy;
 } last_cursor;
 
 static struct wlr_scene_rect *root_bg;
@@ -2265,6 +2266,7 @@ gaplessgrid(Monitor *m)
 void
 handlecursoractivity(void)
 {
+
 	wl_event_source_timer_update(hide_source, cursor_timeout * 1000);
 
 	if (!cursor_hidden)
@@ -2272,12 +2274,15 @@ handlecursoractivity(void)
 
 	cursor_hidden = false;
 
-	if (last_cursor.shape)
+	if (last_cursor.shape) {
 		wlr_cursor_set_xcursor(cursor, cursor_mgr,
 				wlr_cursor_shape_v1_name(last_cursor.shape));
-	else
+	} else if (last_cursor.surface) {
 		wlr_cursor_set_surface(cursor, last_cursor.surface,
 				last_cursor.hotspot_x, last_cursor.hotspot_y);
+	} else {
+		wlr_cursor_set_xcursor(cursor, cursor_mgr, "default");
+	}
 }
 
 int
@@ -2472,6 +2477,11 @@ keypress(struct wl_listener *listener, void *data)
 	uint32_t mods = wlr_keyboard_get_modifiers(&group->wlr_group->keyboard);
 
 	wlr_idle_notifier_v1_notify_activity(idle_notifier, seat);
+
+	/* hide cursor when typing starts */
+	if (hide_cursor_when_typing && !cursor_hidden && event->state == WL_KEYBOARD_KEY_STATE_PRESSED) {
+		hidecursor(NULL);
+	}
 
 	/* On _press_ if there is no active screen locker,
 	 * attempt to process a compositor keybinding. */
@@ -3215,6 +3225,15 @@ run(char *startup_cmd)
 }
 
 void
+unlastcursor(struct wl_listener *listener, void *data)
+{
+	/* When the surface is destroyed, clear our reference to it */
+	last_cursor.surface = NULL;
+	wl_list_remove(&last_cursor.destroy.link);
+	wl_list_init(&last_cursor.destroy.link);
+}
+
+void
 setcursor(struct wl_listener *listener, void *data)
 {
 	/* This event is raised by the seat when a client provides a cursor image */
@@ -3234,6 +3253,13 @@ setcursor(struct wl_listener *listener, void *data)
 		last_cursor.surface = event->surface;
 		last_cursor.hotspot_x = event->hotspot_x;
 		last_cursor.hotspot_y = event->hotspot_y;
+
+		wl_list_remove(&last_cursor.destroy.link);
+		wl_list_init(&last_cursor.destroy.link);
+		if (event->surface) {
+			last_cursor.destroy.notify = unlastcursor;
+			wl_signal_add(&event->surface->events.destroy, &last_cursor.destroy);
+		}
 
 		if (!cursor_hidden)
 			wlr_cursor_set_surface(cursor, event->surface,
@@ -3546,6 +3572,9 @@ setup(void)
 	 */
 	cursor = wlr_cursor_create();
 	wlr_cursor_attach_output_layout(cursor, output_layout);
+
+	/* Initialize the last_cursor destroy listener link so it's safe to remove later */
+	wl_list_init(&last_cursor.destroy.link);
 
 	/* Creates an xcursor manager, another wlroots utility which loads up
 	 * Xcursor themes to source cursor images from and makes sure that cursor
