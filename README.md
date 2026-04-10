@@ -41,6 +41,7 @@ nohup damblocks --fifo >/dev/null 2>&1 &
 15. [modes](https://codeberg.org/dwl/dwl-patches/patch/modes)
 16. [bar-modes](https://codeberg.org/dwl/dwl-patches/patch/bar-modes)
 17. [moveresizekb](https://codeberg.org/dwl/dwl-patches/patch/moveresizekb)
+18. [unclutter](https://codeberg.org/dwl/dwl-patches/patch/unclutter)
 
 
 ### known issues
