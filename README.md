@@ -42,7 +42,6 @@ nohup damblocks --fifo >/dev/null 2>&1 &
 16. [bar-modes](https://codeberg.org/dwl/dwl-patches/patch/bar-modes)
 17. [moveresizekb](https://codeberg.org/dwl/dwl-patches/patch/moveresizekb)
 18. [unclutter](https://codeberg.org/dwl/dwl-patches/patch/unclutter)
-19. [hide-cursor-when-typing](https://codeberg.org/dwl/dwl-patches/patches/hide-cursor-when-typing)
 
 
 ### known issues

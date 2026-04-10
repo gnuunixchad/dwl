@@ -351,8 +351,6 @@ static void gaplessgrid(Monitor *m);
 static void handlecursoractivity(void);
 static int hidecursor(void *data);
 static void handlesig(int signo);
-static void handlecursoractivity(void);
-static int hidecursor(void *data);
 static void incnmaster(const Arg *arg);
 static void incgaps(const Arg *arg);
 static void incigaps(const Arg *arg);
@@ -794,9 +792,9 @@ axisnotify(struct wl_listener *listener, void *data)
 	 * for example when you move the scroll wheel. */
 	struct wlr_pointer_axis_event *event = data;
 	wlr_idle_notifier_v1_notify_activity(idle_notifier, seat);
-    handlecursoractivity();
-	/* TODO: allow usage of scroll wheel for mousebindings, it can be implemented
-	 * by checking the event's orientation and the delta of the event */
+	handlecursoractivity();
+	/* TODO: allow usage of scroll whell for mousebindings, it can be implemented
+	 * checking the event's orientation and the delta of the event */
 	/* Notify the client with pointer focus of the axis event. */
 	wlr_seat_pointer_notify_axis(seat,
 			event->time_msec, event->orientation, event->delta,
@@ -2475,11 +2473,6 @@ keypress(struct wl_listener *listener, void *data)
 
 	wlr_idle_notifier_v1_notify_activity(idle_notifier, seat);
 
-     /* hide cursor when typing starts */
-    if (hide_cursor_when_typing && !cursor_hidden && event->state == WL_KEYBOARD_KEY_STATE_PRESSED) {
-        hidecursor(NULL);
-    }
-
 	/* On _press_ if there is no active screen locker,
 	 * attempt to process a compositor keybinding. */
 	if (!locked && event->state == WL_KEYBOARD_KEY_STATE_PRESSED) {
@@ -2806,7 +2799,7 @@ motionnotify(uint32_t time, struct wlr_input_device *device, double dx, double d
 
 		wlr_cursor_move(cursor, device, dx, dy);
 		wlr_idle_notifier_v1_notify_activity(idle_notifier, seat);
-        handlecursoractivity();
+		handlecursoractivity();
 
 		/* Update selmon (even while dragging a window) */
 		if (sloppyfocus)
@@ -3237,16 +3230,15 @@ setcursor(struct wl_listener *listener, void *data)
 	 * hardware cursor on the output that it's currently on and continue to
 	 * do so as the cursor moves between outputs. */
 	if (event->seat_client == seat->pointer_state.focused_client) {
+		last_cursor.shape = 0;
+		last_cursor.surface = event->surface;
+		last_cursor.hotspot_x = event->hotspot_x;
+		last_cursor.hotspot_y = event->hotspot_y;
 
-        last_cursor.shape = 0;
-        last_cursor.surface = event->surface;
-        last_cursor.hotspot_x = event->hotspot_x;
-        last_cursor.hotspot_y = event->hotspot_y;
-
-        if (!cursor_hidden)
-		    wlr_cursor_set_surface(cursor, event->surface,
-                    event->hotspot_x, event->hotspot_y);
-    }
+		if (!cursor_hidden)
+			wlr_cursor_set_surface(cursor, event->surface,
+					event->hotspot_x, event->hotspot_y);
+	}
 }
 
 void
@@ -3264,7 +3256,7 @@ setcursorshape(struct wl_listener *listener, void *data)
 
 		if (!cursor_hidden)
 			wlr_cursor_set_xcursor(cursor, cursor_mgr,
-                    wlr_cursor_shape_v1_name(event->shape));
+					wlr_cursor_shape_v1_name(event->shape));
 	}
 }
 
