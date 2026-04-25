@@ -2,7 +2,7 @@
 
 
 ![](./misc/20251113_23h10m17s_grim.png)
-dwl 0.8
+dwl 0.9-dev
 
 ### Status bar
 I'm using the bar patch with `damblocks`([codeberg](https://codeberg.org/unixchad/damblocks)/[github](https://github.com/gnuunixchad/damblocks)), my modular POSIX script with signaling support.
@@ -49,11 +49,11 @@ nohup damblocks --fifo >/dev/null 2>&1 &
 - footclient window flickering, see [dwl#705](https://codeberg.org/dwl/dwl/issues/705)
 
 
-### Building dwl 0.8
+### Building dwl
 dwl has the following dependencies:
 - libinput
 - wayland
-- wlroots0.19 (compiled with the libinput backend)
+- wlroots0.20 (compiled with the libinput backend)
 - xkbcommon
 - wayland-protocols (compile-time only)
 - pkg-config (compile-time only)
