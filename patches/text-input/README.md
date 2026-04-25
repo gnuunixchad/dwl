@@ -6,6 +6,7 @@ My modification is based on DreamMaoMao's text-input patch, see
 https://codeberg.org/dwl/dwl/pulls/235#issuecomment-5976196
 
 ### Download
+- [text-input-0.9.patch](./text-input-0.9.patch)
 - [text-input-0.8.patch](./text-input-DreamMaoMao.patch)
 - [text-input-0.7.patch](./text-input-0.7.patch)
 
